@@ -1,14 +1,12 @@
 from flask_restful import Resource
 from models.store import StoreModel
 
-# ..extending the class with '(Resource)'
-
 
 class Store(Resource):
     def get(self, name):
         store = StoreModel.find_by_name(name)
         if store:
-            return store.json()  # default is 200
+            return store.json()
         return {'message': 'Store not found'}, 404
 
     def post(self, name):
